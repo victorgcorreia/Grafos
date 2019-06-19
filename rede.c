@@ -3,10 +3,10 @@
 #include <string.h>
 #include "rede.h"
 
-//NAO_AMIGO = 1;
-//SOL_ENVIADA = 2;
-//SOL_RECEBIDA = 3;
-//AMIGO = 4;
+//inimigo = 1;
+//solicitação_enviada = 2;
+//solicitação_recebida = 3;
+//amigo = 4;
 
 //Função que retorna o índice do login do usuario.
 int logar_usuario(Rede *r, int num, char *nome, char *senha){
