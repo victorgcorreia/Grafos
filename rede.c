@@ -3,10 +3,10 @@
 #include <string.h>
 #include "rede.h"
 
-//inimigo = 1;
-//solicitação_enviada = 2;
-//solicitação_recebida = 3;
-//amigo = 4;
+//NAO_AMIGO = 1;
+//SOL_ENVIADA = 2;
+//SOL_RECEBIDA = 3;
+//AMIGO = 4;
 
 //Função que retorna o índice do login do usuario.
 int logar_usuario(Rede *r, int num, char *nome, char *senha){
@@ -203,33 +203,34 @@ G *cria_grafo_amizade(){
 	FILE *in;
 	in = fopen("amizades.txt", "r");
 
-	int flag = 0, max = 100, erro = 0, aux, n;
-
-	G* grafo = criar_grafo(&max, &flag, &erro);
-	if (erro != 0){
+	int aux = 0, erro1 = 0, max = 100;
+	G* g = criar_grafo(&max, &aux, &erro1);
+	if (erro1 != 0){
 		fclose(in);
 		exit(0);
 	}
 
 	if(in == NULL){
-		return grafo;
+		return g;
 	}
 
+	int n;
 	fscanf(in, "%d", &n);
-	erro = 0;
 
+	int flag;
+	int erro2 = 0;
 	for (int i = 0; i < n; ++i){
 		for (int j = 0; j < n; ++j){
-			fscanf(in, "%d", &aux);
-			inserir_aresta(grafo, &i, &j, &aux, &erro);
-			if (erro != 0){
+			fscanf(in, "%d", &flag);
+			inserir_aresta(g, &i, &j, &flag, &erro2);
+			if (erro2 != 0){
 				fclose(in);
 				exit(0);
 			}
 		}
 	}
 	fclose(in);
-	return grafo;
+	return g;
 }
 
 //Função que retorna a afinidade entre dois usuários, sendo essa afinidade entre 0 (baixa) e 100 (alta)

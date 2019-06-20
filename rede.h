@@ -1,4 +1,4 @@
-#include "grafo.h"
+#include "grafos.h"
 #define amigoVerdadeiro 60
 #define amigoFalso 40
 
